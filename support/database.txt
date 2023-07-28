@@ -1,0 +1,75 @@
+
+---------------------CONSIGNES---------------------------------
+Creer une base de donnee car_location
+Mettre dessus
+
+Creer une table user
+    id entier non signé clé primaire auto increment
+    email chaine de caractere 255 unique
+    mdp chaine de caractere 255
+    username chaine de caractere 255
+    admin booleen
+
+//Affiche la structrure de ma table
+
+Creer une tables car
+    id entier non signé clé primaire auto increment
+    name chaine de caractere 255
+    description text
+    image chaine de caractere 255
+    price float
+
+Creer une table contact
+    id entier non signé clé primaire auto increment
+    email chaine de caractere 255
+    content text
+    date DATETIME
+
+Creer une table reservation
+    id entier non signé clé primaire auto increment
+    date_start DATE
+    date_end DATE
+    total_price float
+    id_user entier non signé clé secondaire id (user)
+    id_car entier non signé clé secondaire id (car)
+
+    -----------------EXERCICE-----------------------------------
+
+CREATE TABLE user (
+    id int UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
+    email VARCHAR(255) UNIQUE,
+    mdp VARCHAR(255),
+    username VARCHAR(255),
+    admin BOOL
+);
+
+CREATE TABLE car (
+    id int UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
+    name VARCHAR(255),
+    description TEXT,
+    image VARCHAR(255),
+    price DECIMAL
+);
+
+CREATE TABLE contact (
+    id int UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
+    email VARCHAR(255),
+    content TEXT,
+    date DATETIME
+);
+
+CREATE TABLE reservation (
+    id int UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
+    date_start DATE,
+    date_end DATE,
+    total_price DECIMAL(8,2),
+    id_user int unsigned,
+    id_car int unsigned,
+    CONSTRAINT fk_id_user FOREIGN KEY (id_user) REFERENCES user (id),
+    CONSTRAINT fk_id_car FOREIGN KEY (id_car) REFERENCES car (id)
+);
+
+---------------------------DATABASE-----------------------------------------
+VALUES ('Renault Clio', 'Son confort inégalé et ses technologies de pointe en font un véhicule polyvalent et agréable à conduire', 'clio.jpg', 2500.00);
+
+INSERT INTO car (name, description, image, price) VALUES('Peugeot 208', 'Un choix judicieux pour ceux qui recherchent une expérience de conduite haut de gamme', 'peugeot.jpg', 4100.00);
